@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <style>
+        h1 {
+            padding-top: 100px;
+            padding-bottom: 100px;
+            font-weight: bold;
+        }
+
+        body {
+            margin: 10%;
+            text-align: center;
+            font-size: xx-large;
+            font-family: "游ゴシック","メイリオ", sans-serif;
+        }
+        select {
+            margin: 5vh;
+            margin-right: 20vw;
+            margin-left: 20vw;
+            width: 150px;
+            height: 50px;
+            padding: 10px;
+        }
+        .year {
+            font-size: auto;
+            padding-top: 100vh;
+            padding-bottom: 50vh;
+        }
+    </style>
+</head>
+<body>
+    <h1>何年何月何日？</h1>
+    <h3>紀年法を選んでください</h3>
+    <div class="w-50 p-3">
+        <select class="form-select" aria-label="Default select example" name="choice" id="year-law">
+            <option value="0"></option>
+            <option value="1" >グレゴリオ暦</option>
+            <option value="2">元号</option>
+            <option value="3">六十干支</option>
+            <option value="4">神武天皇即位紀元</option>
+            <option value="5">檀君紀元</option>
+            <option value="6">民国紀元</option>
+            <option value="7">主体暦</option>
+            <option value="8">仏滅紀元(タイ)</option>
+            <option value="9">ヒジュラ暦</option>
+            <option value="10">ユダヤ暦</option>
+            <option value="11">イラン暦</option>
+            <option value="12">インド国定暦</option>
+            <option value="13">コプト暦</option>
+            <option value="14">ローマ建国紀元</option>
+            <option value="15">人類紀元</option>
+        
+        </select>
+    </div>
+    
+
+
+    <input type="button" value="click" class="btn btn-primary btn-lg" onclick="clickBtn1();location.href='./year-law.html#year'">
+    <p class="year"><span id="year"></span></p>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+    <script>
+        date = new Date();
+                month = date.getMonth() + 1;
+                day = date.getDate();
+        
+        function clickBtn1() {    
+            const str = document.getElementById("year-law").value;
+
+            if (str == "1") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-gregory', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if(str == "2") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-japanese', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if(str == "3") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-chinese', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if(str == "4") {
+                year = date.getFullYear();
+                year = year + 660
+                document.getElementById("year").innerHTML = "皇紀" + year + "年" + month + "月" + day + "日";
+            }else if(str == "5") {
+                year = date.getFullYear();
+                year = year + 2333
+                document.getElementById("year").innerHTML = "檀紀" + year + "年" + month + "月" + day + "日";
+            }else if(str == "6") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-roc', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if(str == "7") {
+                year = date.getFullYear();
+                year = year - 1911
+                document.getElementById("year").innerHTML = "主体" + year + "年" + month + "月" + day + "日";
+            }else if(str == "8") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-buddhist', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if(str == "9") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-islamic', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if (str == "10") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-hebrew', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if (str == "11") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-persian', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if (str == "12") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-indian', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if (str == "13") {
+                const today = new Intl.DateTimeFormat('ja-JP-u-ca-coptic', { era:'long', year: 'numeric', month: 'long', day: 'numeric' }).format(Date.now())
+                document.getElementById("year").innerHTML = today;
+            }else if (str == "14") {
+                year = date.getFullYear();
+                year = year + 753
+                document.getElementById("year").innerHTML = "AUC" + year + "年" + month + "月" + day + "日";
+            }else if (str == "15") {
+                year = date.getFullYear();
+                year = year + 10000
+                document.getElementById("year").innerHTML = year + " HE " + month + "月" + day + "日";
+            }
+            
+        }
+        
+    </script>
+</body>
+</html>
